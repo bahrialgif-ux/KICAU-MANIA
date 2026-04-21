@@ -212,9 +212,7 @@ def main():
         can_trigger = (now - last_trigger_time) >= TRIGGER_COOLDOWN
         trigger_now = two_hands_ready and mouth_recent and wave_now and can_trigger
 
-        # =========================================================
         # LOGIKA PEMUTAR VIDEO BEBAS FREEZE
-        # =========================================================
         
         if trigger_now and not is_playing:
             is_playing = True
@@ -248,7 +246,6 @@ def main():
                 if ret_cat:
                     cv2.imshow("🐾 KICAU MANIA 🐾", cat_frame)
 
-        # =========================================================
 
         cv2.imshow("Kicau Mania Detector", frame)
 
