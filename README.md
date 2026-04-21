@@ -64,7 +64,7 @@ pip install -r requirements.txt
 
 * Gunakan file video berformat `.mp4`
 * Disarankan menggunakan nama `kicau-mania.mp4`
-* Letakkan file pada direktori yang sama dengan `main.py`
+* Letakkan file pada direktori yang sama dengan `kicau.py`
 
 Struktur direktori:
 
@@ -98,7 +98,7 @@ python kicau.py
 
 ## Konfigurasi
 
-Parameter sistem dapat disesuaikan melalui bagian konfigurasi pada file `main.py`:
+Parameter sistem dapat disesuaikan melalui bagian konfigurasi pada file `kicau.py`:
 
 ```python
 CAT_SIZE       = (220, 220)
