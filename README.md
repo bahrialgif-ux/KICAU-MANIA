@@ -1,133 +1,154 @@
-# 🐱 Kicau Mania Detector
+# Kicau Mania Detector
 
-# Project ini merupakan sistem interaktif berbasis computer vision yang mampu mendeteksi gesture real-time melalui kamera, lalu meresponsnya dengan membuka video MP4 di tab baru. Trigger dibuat dari kombinasi gesture 2 tangan: menutup mulut dan mengibas kiri-kanan. Konsep ini menciptakan pengalaman interaksi tanpa sentuhan yang intuitif dan visual.
+Kicau Mania Detector merupakan mini project berbasis *computer vision* yang dirancang untuk mendeteksi gesture secara real-time melalui kamera. Sistem ini merespons kombinasi gerakan tertentu dengan menjalankan aksi berupa membuka video MP4 pada tab baru.
 
-> 2 tangan + tutup mulut + kibas → Video kucing terbuka di tab baru!
+Gesture yang digunakan sebagai pemicu terdiri dari:
 
----
-
-## 📋 Yang Dibutuhkan
-
-- Laptop/PC dengan kamera (webcam)
-- Python 3.9 – 3.11 (direkomendasikan 3.10)
-- Koneksi internet (untuk install library)
+* Deteksi dua tangan
+* Posisi tangan menutupi area mulut
+* Gerakan mengibas tangan ke arah kiri dan kanan
 
 ---
 
-## 🚀 Cara Setup (Langkah demi Langkah)
+## Requirements
 
-### Langkah 1 — Install Python
-Kalau belum punya Python, download di: https://www.python.org/downloads/
+Sebelum menjalankan aplikasi, pastikan lingkungan telah memenuhi kebutuhan berikut:
 
-> ⚠️ Saat install, centang **"Add Python to PATH"**
-
----
-
-### Langkah 2 — Buka Terminal / Command Prompt
-
-- **Windows**: Tekan `Win + R`, ketik `cmd`, Enter
-- **Mac**: Tekan `Cmd + Space`, ketik `Terminal`, Enter
+* Perangkat dengan kamera (webcam)
+* Python versi 3.9 – 3.11 (direkomendasikan 3.10)
+* Koneksi internet untuk instalasi dependensi
 
 ---
 
-### Langkah 3 — Masuk ke Folder Project
+## Instalasi dan Setup
+
+### 1. Install Python
+
+Unduh Python melalui situs resmi:
+[https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+Pastikan opsi "Add Python to PATH" dicentang saat proses instalasi.
+
+---
+
+### 2. Akses Terminal
+
+* Windows: `Win + R` → ketik `cmd`
+* macOS: buka `Terminal`
+
+---
+
+### 3. Masuk ke Direktori Project
 
 ```bash
 cd path/ke/folder/kicau_mania
 ```
 
-Contoh di Windows:
-```
-cd C:\Users\NamaKamu\Downloads\kicau_mania
+Contoh:
+
+```bash
+cd C:\Users\Username\Downloads\kicau_mania
 ```
 
 ---
 
-### Langkah 4 — Install Library yang Dibutuhkan
+### 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Tunggu sampai selesai (bisa 2–5 menit tergantung koneksi).
-
 ---
 
-### Langkah 5 — Siapkan Video MP4 Kucing Joget 🐱
+### 5. Persiapan File Video
 
-1. Pakai video MP4 dengan nama **`kicau-mania.mp4`**
-2. Simpan file video di folder yang sama dengan `main.py`
-3. Jika nama berbeda, tetap bisa selama formatnya `.mp4`
+* Gunakan file video berformat `.mp4`
+* Disarankan menggunakan nama `kicau-mania.mp4`
+* Letakkan file pada direktori yang sama dengan `main.py`
 
-Struktur folder harus seperti ini:
+Struktur direktori:
+
 ```
 kicau_mania/
-├── main.py          ← kode utama
+├── kicau.py
 ├── requirements.txt
 ├── README.md
-└── kicau-mania.mp4  ← video trigger
+└── kicau-mania.mp4
 ```
 
 ---
 
-### Langkah 6 — Jalankan!
+### 6. Menjalankan Aplikasi
 
 ```bash
-python main.py
+python kicau.py
 ```
 
 ---
 
-## 🎮 Cara Main
+## Cara Penggunaan
 
-| Aksi | Hasil |
-|------|-------|
-| 2 tangan terdeteksi + tutup mulut + kibas | MP4 terbuka di tab baru |
-| Syarat belum lengkap | Status deteksi ditampilkan di layar kamera |
-| Tekan **Q** | Keluar dari aplikasi |
+| Kondisi Gesture                                                      | Output                                |
+| -------------------------------------------------------------------- | ------------------------------------- |
+| Dua tangan terdeteksi, menutup mulut, dan melakukan gerakan mengibas | Video MP4 terbuka pada tab baru       |
+| Gesture belum memenuhi kriteria                                      | Status deteksi ditampilkan pada layar |
+| Tekan tombol Q                                                       | Keluar dari aplikasi                  |
 
 ---
 
-## ⚙️ Pengaturan (Opsional)
+## Konfigurasi
 
-Buka `main.py`, di bagian atas ada **KONFIGURASI** yang bisa kamu ubah:
+Parameter sistem dapat disesuaikan melalui bagian konfigurasi pada file `main.py`:
 
 ```python
-CAT_SIZE       = (220, 220)  # Ukuran kucing (lebih besar = angka lebih besar)
-WAVE_THRESHOLD = 2           # Jumlah perubahan arah untuk dianggap kibas
-MOVE_MINIMUM   = 0.018       # Sensitivitas gerakan (lebih kecil = lebih sensitif)
-MOUTH_COVER_DISTANCE = 0.16  # Jarak tangan ke mulut agar dianggap menutup mulut
-TRIGGER_COOLDOWN = 4.0       # Jeda antar trigger (detik)
+CAT_SIZE       = (220, 220)
+WAVE_THRESHOLD = 2
+MOVE_MINIMUM   = 0.018
+MOUTH_COVER_DISTANCE = 0.16
+TRIGGER_COOLDOWN = 4.0
+```
+
+Keterangan:
+
+* WAVE_THRESHOLD: jumlah perubahan arah gerakan untuk mendeteksi kibasan
+* MOVE_MINIMUM: tingkat sensitivitas pergerakan
+* MOUTH_COVER_DISTANCE: jarak maksimum tangan terhadap mulut
+* TRIGGER_COOLDOWN: jeda waktu antar trigger
+
+---
+
+## Troubleshooting
+
+| Permasalahan             | Solusi                                                  |
+| ------------------------ | ------------------------------------------------------- |
+| ModuleNotFoundError      | Jalankan ulang `pip install -r requirements.txt`        |
+| Kamera tidak terdeteksi  | Ubah indeks kamera pada `cv2.VideoCapture()`            |
+| Video tidak terbuka      | Pastikan file `.mp4` tersedia dan browser default aktif |
+| Gesture sulit terdeteksi | Sesuaikan nilai `MOVE_MINIMUM`                          |
+| Trigger terlalu sering   | Tingkatkan `WAVE_THRESHOLD` atau `TRIGGER_COOLDOWN`     |
+
+---
+
+## Mekanisme Sistem
+
+Alur kerja aplikasi secara umum:
+
+```
+Input kamera
+→ Deteksi tangan (MediaPipe Hands)
+→ Deteksi wajah (Face Mesh)
+→ Evaluasi gesture
+→ Trigger aksi (membuka video)
 ```
 
 ---
 
-## 🛠️ Troubleshooting
+## Dependencies
 
-| Masalah | Solusi |
-|---------|--------|
-| `ModuleNotFoundError` | Jalankan `pip install -r requirements.txt` lagi |
-| Kamera tidak terbuka | Coba ganti `cv2.VideoCapture(0)` menjadi `cv2.VideoCapture(1)` |
-| Video tidak terbuka di tab baru | Pastikan browser default aktif & file MP4 ada di folder project |
-| Gesture sulit terdeteksi | Coba turunkan `MOVE_MINIMUM` ke `0.015` |
-| Trigger terlalu sering | Naikkan `WAVE_THRESHOLD` atau `TRIGGER_COOLDOWN` |
+Library utama yang digunakan:
 
----
-
-## 🧠 Cara Kerja (Singkat)
-
-```
-Kamera → MediaPipe Hands (2 tangan) + Face Mesh (mulut)
-→ Cek tangan menutup mulut + deteksi kibas
-→ Jika valid, buka MP4 di tab baru
-```
-
----
-
-## 📦 Library yang Digunakan
-
-- **OpenCV** → Akses kamera & tampilkan video
-- **MediaPipe** → Deteksi dan tracking tangan (dari Google)
-- **MediaPipe Face Mesh** → Landmark wajah untuk area mulut
-- **Pillow** → Utilitas pembacaan GIF (opsional)
-- **NumPy** → Olah data gambar
+* OpenCV
+* MediaPipe
+* MediaPipe Face Mesh
+* NumPy
+* Pillow (opsional)
