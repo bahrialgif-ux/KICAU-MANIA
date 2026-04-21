@@ -1,10 +1,3 @@
-"""
-╔══════════════════════════════════════════╗
-║      🐱 KICAU MANIA DETECTOR 🐱        ║
-║  Kibas tangan → Kucing joget muncul!   ║
-╚══════════════════════════════════════════╝
-"""
-
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -12,21 +5,19 @@ import time
 import sys
 import os
 
-# ──────────────────────────────────────────
-#  KONFIGURASI 
-# ──────────────────────────────────────────
-CAT_VIDEO_PATH = "kicau-mania.mp4" 
-WAVE_THRESHOLD = 1                 # DIUBAH: Cukup 1 kibasan (kanan atau kiri) langsung muncul
-WAVE_AMPLITUDE = 0.01              # DIUBAH: Gerakan sangat kecil (1% lebar layar) sudah terbaca
-MOUTH_COVER_DISTANCE = 0.35        # DIUBAH: Tangan tidak perlu menempel banget ke mulut
-COVER_WAVE_WINDOW = 5.0            # DIUBAH: Memberi waktu lebih lama setelah tutup mulut
-TRIGGER_COOLDOWN = 0.3             # DIUBAH: Respons lebih instan
-INACTIVE_RESET_SECONDS = 1.0       # DIUBAH: Toleransi jika tangan berhenti sejenak agar tidak reset
-PLAY_TIMEOUT = 0.5                 # DIUBAH: Video menutup lebih cepat jika benar-benar diam              
 
-# ──────────────────────────────────────────
+CAT_VIDEO_PATH = "kicau-mania.mp4" 
+WAVE_THRESHOLD = 1                 # NOTE: Cukup 1 kibasan (kanan atau kiri) langsung muncul
+WAVE_AMPLITUDE = 0.01              # NOTE: Gerakan sangat kecil (1% lebar layar) sudah terbaca
+MOUTH_COVER_DISTANCE = 0.35        # NOTE: Tangan tidak perlu menempel banget ke mulut
+COVER_WAVE_WINDOW = 5.0            # NOTE: Memberi waktu lebih lama setelah tutup mulut
+TRIGGER_COOLDOWN = 0.3             # NOTE: Respons lebih instan
+INACTIVE_RESET_SECONDS = 1.0       # NOTE: Toleransi jika tangan berhenti sejenak agar tidak reset
+PLAY_TIMEOUT = 0.5                 # NOTE: Video menutup lebih cepat jika benar-benar diam              
+
+
 #  SETUP MEDIAPIPE
-# ──────────────────────────────────────────
+
 mp_hands = mp.solutions.hands
 mp_face_mesh = mp.solutions.face_mesh
 mp_draw  = mp.solutions.drawing_utils
@@ -132,9 +123,9 @@ class WaveDetector:
             
         return is_wave
 
-# ──────────────────────────────────────────
+
 #  FUNGSI UTAMA
-# ──────────────────────────────────────────
+
 def main():
     print("\nKICAU MANIA DETECTOR - Starting...\n")
 
